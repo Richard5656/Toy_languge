@@ -12,3 +12,5 @@ Binaries will show up in bin.
 <pre>Note: Only works on windows and linux.
 Also is very buggy.
 </pre>
+
+The virtual machine architecture is based off of <a href = "https://github.com/lotabout/write-a-C-interpreter">Lotabout's how to write a C interpreter </a>
