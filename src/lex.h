@@ -118,11 +118,14 @@ public:
 
   std::vector<token> tokens;
 
+
+
+
   Lex(std::string code) {
     int counter = 0;         // counts through the code
     std::string store_token; // stores characters to build up tokens
     for (int i = 0; i < code.size(); i++) {
-      if (code[i] == '	' ||code[i] == ' ' || code[i] == '\n') {
+      if (code[i] == '	' ||code[i] == ' ' || code[i] == '\n'|| code[i] == '\t' || code[i] == '\r') {
         continue;
       }
 
