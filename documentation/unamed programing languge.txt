@@ -1,0 +1,60 @@
+Unamed programing languge
+
+
+-no comments
+-no strings
+
+
+every program starts with main
+
+main{
+
+}
+
+setting varibles:
+
+var varible_name = 0;
+
+printing: 
+
+print(12);
+print($varible_name);
+
+if statement:
+.= : equals
+<: less than
+>: greater than
+!=: not equal
+
+if($varible_name .= 0){
+	print($hi);
+}
+
+while statement(loops): 
+
+.= : equals
+<: less than
+>: greater than
+!=: not equal
+
+while($varible_name .= 0){
+	print($varible_name);
+}
+
+
+
+example program:
+
+main{
+	var i =0;
+	while($i <100){
+		$i+=1;
+		if($i > 50){
+			print($i);
+		}
+	}
+}
+
+
+
+
