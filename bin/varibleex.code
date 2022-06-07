@@ -1,0 +1,4 @@
+main{
+	var varible_name = 90;
+	print($varible_name);
+}

@@ -1,0 +1,9 @@
+main{
+	var varible_name = 90;
+	if($varible_name .= 90){
+		print($varible_name);
+	}
+	if($varible_name>100){
+		print(67);
+	}
+}
