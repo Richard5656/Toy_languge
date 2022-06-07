@@ -1,0 +1,31 @@
+bp = base pointer
+AX = accumulator regestir
+
+
+HLT ; halts the program
+IMM [Integer] ;moves an integer into AX
+JMP [Location if -asa] [Label name if -ada] ; jump
+STA	[Offset from bp] ;moves AX to the offset from bp
+LDA [Offset from bp] ;moves the offset from bp to AX
+NDLDA [Offset from bp]; does the same as LDA but not setting the offset bp to 0
+NDSTA [Offset from bp]; does the same as STA but not setting AX to 0
+ADD ;pops the first item on the stack and adds it by AX puting the result into AX 
+SUB ;pops the first item on the stack and subtracts it by AX puting the result into AX
+MUL ;pops the first item on the stack and multiplies it by AX puting the result into AX
+DIV ;pops the first item on the stack and divides it by AX puting the result into AX
+PSH ;pushes AX to the stack
+POP ;pops the top of the stack into AX
+PRI ;prints AX
+PRC ;prints AX as a character
+JNZ [Location if -asa] [Label name if -ada] ; jump if not zero
+JZ [Location if -asa] [Label name if -ada] ; jump if zero
+CALL [Location if -asa] [Label name if -ada] ; calls into function/subroutine
+ADJ [Ammount] ; adjust stack frames in a function
+RET ; returns from a function
+LE [offset by bp] ;compares memory at the offset with AX and sets AX to 0 if not less than
+GT [offset by bp] ;compares memory at the offset with AX and sets AX to 0 if not greater than
+EQ [offset by bp] ;compares memory at the offset with AX and sets AX to 0 if not equal to
+NE [offset by bp] ;compares memory at the offset with AX and sets AX to 0 if equal to
+LDAO [offset by bp] ;used for loops, loads the offset of the value inside bp used for offseting bp (ignore too complex)
+STAO [offset by bp] ;used for loops, stores into the offset of the value inside bp used for offseting bp (ignore too complex)
+LABEL [label name] ;used only for -asa
