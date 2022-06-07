@@ -1,0 +1,13 @@
+main
+-admp dump machine code for inerpreted lang
+-idmp machine code dump for assembly abstract
+-id interpret to abstract assembly
+-asd Assembler Direct
+-asa Assembler Abstract
+-i Interpreter
+[text filename]
+
+example for the interpreter
+main -i [filename]
+
+Only one flag can be used at a time.
