@@ -62,9 +62,9 @@ switch(*pc){
             case IMM:{ ax = *++pc;}break;
             case PSH:{*--sp = ax; ax=0;}break;
             case ADD:{ax = *sp++ + ax;}break;
-            case SUB:{ax = *sp++ - ax;}break;
+            case SUB:{ax =  ax-*sp++;}break;
             case MUL:{ax = *sp++ * ax;}break;
-            case DIV:{ax = *sp++ / ax;}break;
+            case DIV:{ax = ax / *sp++;}break;
             case POP:{ax = *sp++;}break;
             case PRI:{std::cout<<ax<<"\n";} break;
             case PRC:{std::cout<<(char)ax;} break;
@@ -84,6 +84,7 @@ switch(*pc){
             case GT:{ax = (ax>*(bp+ *++pc));}break;
             case EQ:{ax = (ax!=*(bp+ *++pc));}break;
             case NE:{ax = (ax==*(bp+ *++pc));}break;
+			//case NOP:{*pc++;}break;
 //case HLT:{exit(0);std::cout<<"\n*sucess*\n";}break;
             default:{std::cout<<"Invalid opcode now terminating " << *pc <<"\n";exit(1);}break;
                 }

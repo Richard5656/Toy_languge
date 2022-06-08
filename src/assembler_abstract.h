@@ -125,6 +125,7 @@ public:
       add_to_mem = CPU::NDLDA;
     if (pos_tok == "NDSTA")
       add_to_mem = CPU::NDSTA;
+  
     if (add_to_mem != -1) {
       kt_mem++;
       keep_track = "";
@@ -132,6 +133,8 @@ public:
   }
 
   void count_labels(std::string code) {
+	  
+	  
     for (int i = 0; i < code.length(); i++) {
 
       if (code[i] == ';') {
@@ -140,7 +143,7 @@ public:
         }
       }
 
-      if (code[i] != ' ' && code[i] != '\n') {
+      if (code[i] != ' ' && code[i] != '\n'&& code[i] != '\t'&& code[i] != '\r') {
         keep_track += code[i];
         if (keep_track == "LABEL") {
           keep_track = "";
@@ -189,21 +192,26 @@ public:
   }
 
   void lexer(std::string code) {
+	 int digit_flag = 1;//keeps the Jump detection from detecting digits 2,13,14,15  1 for not digit 0 for is digit
+	 
+	 
     for (int i = 0; i < code.length(); i++) {
+		
       if (code[i] == ';') {
         while (code[i] != '\n') {
           i++;
         }
       }
-      if (code[i] != ' ' && code[i] != '\n') {
-        keep_track += code[i];
+      if (code[i] != ' ' && code[i] != '\n'&& code[i] != '\t'&& code[i] != '\r') {	
+
+		keep_track += code[i];
 
         int is_type_of_jump;
         if (memory.size() != 0) {
-          is_type_of_jump = (memory[memory.size() - 1] == CPU::JMP) +
+          is_type_of_jump = ((memory[memory.size() - 1] == CPU::JMP) +
                             (memory[memory.size() - 1] == CPU::JZ) +
                             (memory[memory.size() - 1] == CPU::JNZ) +
-                            (memory[memory.size() - 1] == CPU::CALL);
+                            (memory[memory.size() - 1] == CPU::CALL))*digit_flag;
         }
 
         if (is_type_of_jump == 1) {
@@ -223,9 +231,8 @@ public:
           }
           keep_track = "";
         }
-
-        match_operation(keep_track);
-
+		digit_flag =0;
+		match_operation(keep_track);
         // numerical handling
         if (isdigit(code[i])||code[i]=='-') {
           int is_neg = 1;// -1 = true
@@ -239,14 +246,13 @@ public:
 				keep_track += code[i];
 				i++;
 			  }
-
 			  memory.push_back(atoi(keep_track.c_str()) * is_neg);
-
 			  keep_track="";
+			  digit_flag=0;
 			}
 		}
 	}
-  }
+}
   void copy_memory(CPU *cpu) {
     for (int i = 0; i < memory.size(); i++)
       cpu->memory[i] = (memory[i]);

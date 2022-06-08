@@ -50,7 +50,8 @@ int main(int argc, char **argv) {
 		  dir_Assembler assembler(code);
 		  assembler.copy_memory(&cpu);
 		  cpu.run();  
-    }else if(strcmp(argv[1],"-id")==0){  
+    }else if(strcmp(argv[1],"-id")==0){
+			
 		  Lex lexer(code);
 		  Parse parser(lexer.tokens);
 		  Code_gen code_gen(parser);
