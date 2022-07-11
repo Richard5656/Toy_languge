@@ -231,7 +231,7 @@ public:
           }
           keep_track = "";
         }
-		digit_flag =0;
+		digit_flag =1;
 		match_operation(keep_track);
         // numerical handling
         if (isdigit(code[i])||code[i]=='-') {
