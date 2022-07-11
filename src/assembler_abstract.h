@@ -192,8 +192,6 @@ public:
   }
 
   void lexer(std::string code) {
-	 int digit_flag = 1;//keeps the Jump detection from detecting digits 2,13,14,15  1 for not digit 0 for is digit
-	 
 	 
     for (int i = 0; i < code.length(); i++) {
 		
@@ -203,18 +201,17 @@ public:
         }
       }
       if (code[i] != ' ' && code[i] != '\n'&& code[i] != '\t'&& code[i] != '\r') {	
-
 		keep_track += code[i];
 
         int is_type_of_jump;
         if (memory.size() != 0) {
-          is_type_of_jump = ((memory[memory.size() - 1] == CPU::JMP) +
-                            (memory[memory.size() - 1] == CPU::JZ) +
-                            (memory[memory.size() - 1] == CPU::JNZ) +
-                            (memory[memory.size() - 1] == CPU::CALL))*digit_flag;
+		  is_type_of_jump = (keep_track == "JMP")  + (keep_track == "JZ") + (keep_track == "JNZ") + (keep_track == "CALL");
+		  
+
         }
 
         if (is_type_of_jump == 1) {
+		 match_operation(keep_track);
           while (code[i] != '\n') {
             i++;
             if (code[i] != ' ') {
@@ -231,10 +228,12 @@ public:
           }
           keep_track = "";
         }
-		digit_flag =1;
+
 		match_operation(keep_track);
+		
         // numerical handling
         if (isdigit(code[i])||code[i]=='-') {
+			
           int is_neg = 1;// -1 = true
           if(code[i] == '-'){
             i++;
@@ -245,11 +244,14 @@ public:
 			  while (isdigit(code[i])) {
 				keep_track += code[i];
 				i++;
+
 			  }
 			  memory.push_back(atoi(keep_track.c_str()) * is_neg);
+			  
 			  keep_track="";
-			  digit_flag=0;
+
 			}
+			
 		}
 	}
 }
